@@ -7,7 +7,7 @@ defmodule MarcoPolo.Mixfile do
   def project do
     [app: :marco_polo,
      version: @version,
-     elixir: "~> 1.2",
+     elixir: "~> 1.6",
 
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -50,7 +50,7 @@ defmodule MarcoPolo.Mixfile do
      {:connection, "~> 1.0.0"},
      {:dialyze, "~> 0.2.0", only: :dev},
      {:coverex, "~> 1.4", only: :test},
-     {:dotenv, "~> 1.0", only: :test},
+     {:dotenv, "~> 3.0", only: :test},
      {:ex_doc, "~> 0.9", only: :docs}]
   end
 

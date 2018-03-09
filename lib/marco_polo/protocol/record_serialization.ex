@@ -398,11 +398,13 @@ defmodule MarcoPolo.Protocol.RecordSerialization do
 
   defp header_offset(fields) do
     # The last +1 is for the `0` that signals the end of the header.
-    fields
-    |> Stream.map(fn({name, value}) -> encode_field_for_header(name, 0, value) end)
-    |> Stream.map(&IO.iodata_length/1)
-    |> Enum.sum
-    |> +(1)
+    sum =
+        fields
+        |> Stream.map(fn({name, value}) -> encode_field_for_header(name, 0, value) end)
+        |> Stream.map(&IO.iodata_length/1)
+        |> Enum.sum
+
+    sum + 1
   end
 
   defp encode_embedded(%Document{class: class, fields: fields}, offset) do
